@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gallerie d'annonces{% endblock %}
+
+{% block body %}
+<div class="container"></div>
+<h1>Les annonces</h1>
+<br>
+<div class="row">
+    {% for annonce in annonces%}
+        <div class="col-md-3">
+
+            <div class="card-header" style="min-height:70px;">
+                <h4 class="text-info" style="margin: auto; padding: 10px 0px 10px 0px;">{{annonce.titre}}</h4>
+            </div>
+            
+            <img src="{{annonce.photo}}" style="max-height: 250px; width: inherit; display: block;"/>
+            <div class="card">
+                <h5>Super voiture</h5>
+                <p>Qui déchire grave...</p>
+                <a href="annonces/{{annonce.id}}" class="btn btn-outline-info"> Plus d'info </a>
+                <br>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}

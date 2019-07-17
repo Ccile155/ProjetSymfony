@@ -1,0 +1,54 @@
+/* ~~~~~~~~~~~~~~~~~~~~~ Base ~~~~~~~~~~~~~~~~~~~~~ */
+body{
+    text-align: center;
+    position: relative;
+}
+
+.jumbotron{
+    width: 70%;
+    margin: 20px auto auto auto;
+}
+
+#footer{
+    position: absolute;
+    bottom: -90px;
+    width: 100%;
+    justify-content: center;
+}
+
+#navbarColor02{
+    width: 30%;
+    margin: auto;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~ Form-success ~~~~~~~~~~~~~~~~~~~~~ */
+#coordonnees{
+    float: right,
+}
+
+#avatar{
+    width: auto;
+    height: 150px;;
+    border-radius: 50%;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~ Form Boostrap ~~~~~~~~~~~~~~~~~~~~~ */
+#form{
+    margin-bottom: 40px;
+    width: 50%;
+    margin: auto;
+}
+
+/* fieldset{
+    width: 50%;
+    margin: auto;
+} */
+
+label{
+    float: left;
+    color: #2384C6;
+}
+
+#form_submit{
+    background-color: #00BC8C;
+}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projet Symfony{% endblock %}
+
+{% block body %}
+{{ parent() }}
+
+        <h1 class="display-3">Salut {{ user | capitalize}} !</h1>
+        <p class="lead">Ceci est mon premier projet Symfony.</p>
+        <hr class="my-4">
+        <p>Ca va chauffer...</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="#" role="button">Click</a>
+        </p>
+
+
+{% endblock %}

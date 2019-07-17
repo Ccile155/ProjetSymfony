@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}Validation d'inscription{% endblock %}
+{% block body %}
+{{ parent() }}
+<h3>Bienvenue <span class="text-warning">{{pseudo}}</span>, vous êtes maintenant inscrit(e) sur Symfony !</h3>
+<p> Rappel de vos coordonées:
+    <br>
+    <br>
+    <img src="{{avatar}}" alt="avatar" id="avatar"/>
+    <div id="coordonnees">
+        Pseudo: <span class="text-success">{{pseudo}}</span>
+        <br>
+        Email: <span class="text-success">{{email}}</span>
+    </div> 
+</p>
+{% endblock %}
