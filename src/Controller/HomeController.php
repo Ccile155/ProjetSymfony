@@ -8,14 +8,7 @@ use Symfony\Component\HttpFoundation\Response; //import Class depuis le @Route d
 use Symfony\Component\Routing\Annotation\Route; //import Class depuis le @Route de la classe
 
 class HomeController extends AbstractController{
-        /**
-     * @Route("/login", name="login")
-     */
-    public function log(){
 
-        return $this->render('form.html.twig');
-
-    } 
     //syntaxe de création de route: /* [enter] donne le squelette d'annotations (prises en compte dans le code) :
     /**
      * @Route("/home", name="homepage") 

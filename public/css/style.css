@@ -52,3 +52,7 @@ label{
 #form_submit{
     background-color: #00BC8C;
 }
+
+.text-muted{
+    text-align: left;
+}

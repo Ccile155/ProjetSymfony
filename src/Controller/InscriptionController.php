@@ -20,12 +20,16 @@ class InscriptionController extends AbstractController{
         $inscrit = new Users();
 
         $form = $this->createFormBuilder($inscrit)
-            ->add('pseudo', TextType::class)
-            ->add('email', TextType::class)
-            ->add('passwrd', TextType::class)
-            ->add('avatar', FileType::class)
+            ->add('pseudo', TextType::class, ['help' => 'Enter your login'])
+            ->add('email', TextType::class, ['help' => 'We will never give your personal data to tiers.'])
+            ->add('passwrd', TextType::class, ['help' => '8 caracters minimum', 'label' => 'Password'])
+            ->add('avatar', FileType::class, ['help' => 'Help the other user to trust you.'])
             ->add('submit', SubmitType::class, ['label' => 'Submit'])
             ->getForm();
+
+            // $form->add('email', null, [
+            //     'help' => 'Make sure to add a valid email',
+            // ]);
 
             $form->handleRequest($request);
 
