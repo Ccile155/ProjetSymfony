@@ -2,7 +2,9 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -15,23 +17,13 @@ class InscriptionController extends AbstractController{
      * @Route("/inscription/", name="inscription")
      * @Route("/inscription_success", name="inscription_success")
      */
-    public function inscription(Request $request){
+    public function inscription(Request $request, ObjectManager $manager){
         // creates a task and gives it some dummy data for this example
         $inscrit = new Users();
 
-        $form = $this->createFormBuilder($inscrit)
-            ->add('pseudo', TextType::class, ['help' => 'Enter your login'])
-            ->add('email', TextType::class, ['help' => 'We will never give your personal data to tiers.'])
-            ->add('passwrd', TextType::class, ['help' => '8 caracters minimum', 'label' => 'Password'])
-            ->add('avatar', FileType::class, ['help' => 'Help the other user to trust you.'])
-            ->add('submit', SubmitType::class, ['label' => 'Submit'])
-            ->getForm();
+        $form = $this->createForm(UserType::class, $inscrit);
 
-            // $form->add('email', null, [
-            //     'help' => 'Make sure to add a valid email',
-            // ]);
-
-            $form->handleRequest($request);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // $form->getData() holds the submitted values
@@ -40,11 +32,9 @@ class InscriptionController extends AbstractController{
             $pseudo = $form["pseudo"]->getData();
             $email = $form["email"]->getData(); 
             $avatar = $form["avatar"]->getData();       
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($inscrit);
-            $entityManager->flush();
+
+            $manager->persist($inscrit);
+            $manager->flush();
 
             return $this->render('form-success.html.twig', [
                 'pseudo'=>$pseudo, 

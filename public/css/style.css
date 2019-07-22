@@ -33,7 +33,13 @@ body{
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~ Form Boostrap ~~~~~~~~~~~~~~~~~~~~~ */
-#form{
+/* #form{
+    margin-bottom: 40px;
+    width: 50%;
+    margin: auto;
+} */
+
+.form-group{
     margin-bottom: 40px;
     width: 50%;
     margin: auto;
@@ -49,10 +55,7 @@ label{
     color: #2384C6;
 }
 
-#form_submit{
-    background-color: #00BC8C;
-}
-
 .text-muted{
     text-align: left;
+    margin-bottom: 10px;
 }

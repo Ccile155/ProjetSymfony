@@ -2,7 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="icon" href="{{asset('../raspberry.ico')}}" />
+        {# <link rel="shortcut icon" href="favicon.ico" /> #}
+        <link rel="icon" type="image/x-icon" href="{{asset('raspberry.ico')}}" />
+        {# <link rel="icon" type="image/png" href="favicon.png" /> #}
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
             <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet"/>

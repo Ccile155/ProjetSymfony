@@ -1,7 +1,17 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+            # use your user class name here
+        App\Entity\Users:
+            # bcrypt or sodium are recommended
+            # sodium is more secure, but requires PHP 7.2 or the Sodium extension
+            algorithm: bcrypt
     providers:
-        in_memory: { memory: ~ }
+        # used to reload user from session & other features (e.g. switch_user)
+        db_provider:
+            entity:
+                class: App\Entity\Users
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -11,8 +21,11 @@ security:
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
+            form_login:
+                check_path: login
+                login_path: login
             logout:
-                path: app_logout
+                path: home
                 # where to redirect after logout
                 # target: app_any_route
 
@@ -27,3 +40,6 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        

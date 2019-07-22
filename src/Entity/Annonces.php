@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,16 +21,27 @@ class Annonces
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $titre;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(
+     *     type="integer",
+     *     message="The price should be a number.")
      */
     private $prix;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\notBlank
+     * @Assert\Length(
+     *      min = 10,
+     *      max = 250,
+     *      minMessage = "The description must be at least {{ limit }} characters long",
+     *      maxMessage = "The description cannot be longer than {{ limit }} characters"
+     * )
      */
     private $description;
 
@@ -42,6 +54,16 @@ class Annonces
      * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="annonce")
      */
     private $photos;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="annonce")
+     */
+    private $owner;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users", inversedBy="annonce")
+     */
+    private $user;
 
     public function __construct()
     {
@@ -128,6 +150,18 @@ class Annonces
                 $photo->setAnnonce(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
